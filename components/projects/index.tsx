@@ -1,4 +1,5 @@
 import { JSX } from "react";
+import DotsBackground from "../blog/DotsBackground";
 
 interface MethodItem {
   letter: string;
@@ -185,35 +186,12 @@ const StellarMethodSection = () => {
 
   return (
     <section className="bg-white text-black relative overflow-hidden">
-      {/* Enhanced Background Pattern with larger dots only */}
-      <div className="absolute inset-0 opacity-100">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern
-              id="stellar-dots"
-              x="0"
-              y="0"
-              width="50"
-              height="50"
-              patternUnits="userSpaceOnUse"
-            >
-              {/* Large dots at intersections */}
-              <circle cx="0" cy="0" r="3" fill="#334155" opacity="0.4" />
-              <circle cx="25" cy="25" r="2.5" fill="#1e293b" opacity="0.3" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#stellar-dots)" />
-        </svg>
-      </div>
-
-      {/* Additional layered dot pattern for more depth */}
-      <div
-        className="absolute inset-0 opacity-[0.25]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 3px 3px, #0f172a 3px, transparent 0)",
-          backgroundSize: "80px 80px",
-        }}
+      {/* Background Pattern - Using DotsBackground Component */}
+      <DotsBackground 
+        className="absolute inset-0" 
+        dotSize={4} 
+        gap={40} 
+        dotColor="rgba(51, 65, 85, 0.2)" 
       />
 
       <div className="md:p-[100px] px-[24px] py-[60px] mx-auto max-w-[1536px] relative">

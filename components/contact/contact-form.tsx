@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Invalid email address"),
+  phone: z.string().min(10, "Phone number should be at least 10 digits"),
   company: z.string().min(3, "Company is required"),
   project: z
     .string()
@@ -21,6 +22,7 @@ const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
+    phone: "",
     company: "",
     project: "",
   });
@@ -92,6 +94,7 @@ const ContactForm: React.FC = () => {
           setFormData({
             name: "",
             email: "",
+            phone: "",
             company: "",
             project: "",
           });
@@ -151,6 +154,23 @@ const ContactForm: React.FC = () => {
           <p className="text-white text-sm  flex items-center gap-3 pt-2 mt-1">
             <span className="h-[10px] aspect-square rounded-full bg-red-500 w-[10px] inline-block"></span>
             {errors.email}
+          </p>
+        )}
+      </div>
+      <div className="mb-6">
+        <input
+          name="phone"
+          onChange={handleChange}
+          value={formData.phone}
+          type="tel"
+          placeholder="Enter your contact number"
+          disabled={sendingEmail}
+          className="w-full md:py-[30px] py-[20px] bg-transparent border-b placeholder:text-white/50 border-white text-white placeholder-white focus:outline-none"
+        />
+        {errors.phone && (
+          <p className="text-white text-sm  flex items-center gap-3 pt-2 mt-1">
+            <span className="h-[10px] aspect-square rounded-full bg-red-500 w-[10px] inline-block"></span>
+            {errors.phone}
           </p>
         )}
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import DotsBackground from "../blog/DotsBackground";
 
 interface BlogPost {
   title: string;
@@ -44,34 +45,12 @@ const BlogSection = () => {
 
   return (
     <section className="bg-white text-black relative overflow-hidden">
-      {/* Background Pattern - Dots only */}
-      <div className="absolute inset-0 opacity-100">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern
-              id="blog-dots"
-              x="0"
-              y="0"
-              width="50"
-              height="50"
-              patternUnits="userSpaceOnUse"
-            >
-              <circle cx="0" cy="0" r="3" fill="#334155" opacity="0.4" />
-              <circle cx="25" cy="25" r="2.5" fill="#1e293b" opacity="0.3" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#blog-dots)" />
-        </svg>
-      </div>
-
-      {/* Additional layered dot pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.25]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 3px 3px, #0f172a 3px, transparent 0)",
-          backgroundSize: "80px 80px",
-        }}
+      {/* Background Pattern - Using DotsBackground Component */}
+      <DotsBackground 
+        className="absolute inset-0" 
+        dotSize={4} 
+        gap={40} 
+        dotColor="rgba(51, 65, 85, 0.2)" 
       />
 
       <div className="md:p-[100px] px-[24px] py-[60px] mx-auto max-w-[1536px] relative">
@@ -108,7 +87,7 @@ const BlogSection = () => {
             <div className="absolute -bottom-1 -left-1 w-full h-full bg-black z-0"></div>
             <div className="absolute group-active:translate-y-1 group-active:-translate-x-1 transition-all inset-0 bg-[#2D2DC3] z-10"></div>
             <a
-              href="/blog"
+              href="/"
               className="relative inline-block transition-all duration-300 z-20 group-active:-translate-x-1 group-active:translate-y-1"
             >
               View All Articles
@@ -129,57 +108,80 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
   const [imageError, setImageError] = useState(false);
 
   return (
-    <article className="group relative bg-[#f8f8f8] hover:bg-white border-2 border-black overflow-hidden transition-all duration-300 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col">
-      {/* Image */}
-      <div className="relative h-[220px] overflow-hidden bg-gray-200">
+    <article className="group relative bg-white border-2 border-black overflow-hidden transition-all duration-500 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 flex flex-col h-full">
+      {/* Image with Overlay Effect */}
+      <div className="relative h-[280px] overflow-hidden bg-gray-200">
         {!imageError ? (
-          <img
-            src={post.image}
-            alt={post.title}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            onError={() => setImageError(true)}
-          />
+          <>
+            <img
+              src={post.image}
+              alt={post.title}
+              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
+              onError={() => setImageError(true)}
+            />
+            {/* Gradient Overlay on Hover */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          </>
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-[#2D2DC3] to-[#1e96fc] flex items-center justify-center">
-            <span className="text-white font-gb text-4xl font-bold">
+          <div className="w-full h-full bg-gradient-to-br from-[#2D2DC3] via-[#1e96fc] to-[#0ea5e9] flex items-center justify-center">
+            <span className="text-white font-gb text-5xl font-bold drop-shadow-lg">
               {post.category.charAt(0)}
             </span>
           </div>
         )}
 
-        {/* Category Badge */}
-        <div className="absolute top-4 left-4 bg-black text-white px-3 py-1 text-xs font-bold font-gb">
+        {/* Category Badge with Animation */}
+        <div className="absolute top-5 left-5 bg-black text-white px-4 py-2 text-xs font-bold font-gb uppercase tracking-wider transform transition-all duration-300 group-hover:bg-[#2D2DC3] group-hover:scale-105">
           {post.category}
         </div>
+
+        {/* Decorative Corner Element */}
+        <div className="absolute top-0 right-0 w-16 h-16 bg-[#1e96fc]/20 transform rotate-45 translate-x-8 -translate-y-8 group-hover:translate-x-6 group-hover:-translate-y-6 transition-all duration-500" />
       </div>
 
-      {/* Content */}
-      <div className="p-[24px] flex flex-col flex-grow">
-        {/* Meta */}
-        <div className="flex items-center gap-3 text-xs text-gray-600 mb-3 font-sg">
-          <span>{post.date}</span>
-          <span>•</span>
-          <span>{post.readTime}</span>
+      {/* Content with Better Spacing */}
+      <div className="p-[28px] flex flex-col flex-grow bg-white relative">
+        {/* Accent Line */}
+        <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-[#2D2DC3] to-[#1e96fc] group-hover:w-full transition-all duration-500" />
+
+        {/* Meta Information */}
+        <div className="flex items-center gap-3 text-xs text-gray-500 mb-4 font-sg font-medium">
+          <div className="flex items-center gap-1.5">
+            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+            </svg>
+            <span>{post.date}</span>
+          </div>
+          <span className="text-gray-300">•</span>
+          <div className="flex items-center gap-1.5">
+            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+            </svg>
+            <span>{post.readTime}</span>
+          </div>
         </div>
 
-        {/* Title */}
-        <h3 className="text-xl md:text-2xl font-bold font-gb mb-3 leading-tight group-hover:text-[#2D2DC3] transition-colors duration-300">
+        {/* Title with Better Typography */}
+        <h3 className="text-xl md:text-2xl font-bold font-gb mb-4 leading-[1.2] text-gray-900 group-hover:text-[#2D2DC3] transition-colors duration-300 line-clamp-3">
           {post.title}
         </h3>
 
-        {/* Excerpt */}
-        <p className="text-sm md:text-base font-sg text-gray-700 leading-relaxed mb-4 flex-grow">
+        {/* Excerpt with Line Clamp */}
+        <p className="text-[15px] md:text-base font-sg text-gray-600 leading-relaxed mb-6 flex-grow line-clamp-3">
           {post.excerpt}
         </p>
 
-        {/* Read More Link */}
+        {/* Enhanced Read More Link */}
         <a
-          href={`/blog/${index + 1}`}
-          className="inline-flex items-center gap-2 text-sm font-bold font-gb text-black hover:text-[#2D2DC3] transition-colors duration-300 group/link"
+          href={`/`}
+          className="inline-flex items-center gap-2 text-sm font-bold font-gb text-black hover:text-[#2D2DC3] transition-all duration-300 group/link mt-auto pt-4 border-t border-gray-100"
         >
-          <span>Read Article</span>
+          <span className="relative">
+            Read Full Article
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2D2DC3] group-hover/link:w-full transition-all duration-300" />
+          </span>
           <svg
-            className="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform duration-300"
+            className="w-4 h-4 transform group-hover/link:translate-x-2 transition-transform duration-300"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -187,15 +189,22 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
+              strokeWidth={2.5}
               d="M17 8l4 4m0 0l-4 4m4-4H3"
             />
           </svg>
         </a>
       </div>
 
-      {/* Decorative corner accent */}
-      <div className="absolute bottom-0 right-0 w-0 h-0 border-r-[30px] border-r-transparent border-b-[30px] border-b-[#1e96fc] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      {/* Animated Corner Accent */}
+      <div className="absolute bottom-0 right-0 w-0 h-0 border-l-[40px] border-l-transparent border-b-[40px] border-b-[#2D2DC3] opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:border-l-[50px] group-hover:border-b-[50px]">
+        <div className="absolute bottom-[-35px] right-[-5px] w-6 h-6 bg-white rounded-full" />
+      </div>
+
+      {/* Hover Glow Effect */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#2D2DC3]/5 via-transparent to-[#1e96fc]/5" />
+      </div>
     </article>
   );
 };

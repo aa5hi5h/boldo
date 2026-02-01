@@ -8,6 +8,7 @@ import { gotham_font, spaceGrotesk } from "../config/font";
 import Navbar from "../components/ui/navbar";
 import FooterSection from "../components/footer";
 import WhyOurAgency from "../components/why-dma";
+import CTASection from "@/components/cta-section";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <AboutSection />
       <ContactSection />
       <FAQ />
+      <CTASection />
       <FooterSection />
     </main>
   );

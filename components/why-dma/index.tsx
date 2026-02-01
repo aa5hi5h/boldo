@@ -18,13 +18,13 @@ const WhyOurAgency = () => {
         <header className="flex flex-col font-gb">
           <span className="font-semibold text-xl">Why</span>
           <h2 className="relative md:text-6xl text-5xl mt-2 text-black w-fit inline-block">
-            <span className="z-30 relative font-bold text-black">Boldo?</span>
+            <span className="z-30 relative font-bold text-black">Stellix?</span>
             <div className="inset-0 absolute bg-white z-20" />
             <div className="inset-0 absolute bg-[#1e96fc] translate-x-2 translate-y-2 z-10" />
           </h2>
         </header>
         <p className="md:w-2/3 mt-8 text-sm md:text-xl">
-          At Boldo, we are dedicated to transforming visions into
+          At Stellix, we are dedicated to transforming visions into
           impactful solutions. Our mission is to empower startups and businesses
           with a combination of cutting-edge tools, innovative design, and
           strategic marketing. Whether you need a robust product, a scalable

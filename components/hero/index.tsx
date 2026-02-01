@@ -127,9 +127,9 @@ const HeroSection = () => {
           }}
         >
           <span>
-            <AnimatedText text="Your" delay={firstLineDelay} />{" "}
+            <AnimatedText text="Scaling" delay={firstLineDelay} />{" "}
             <span className="inline-block relative">
-              <AnimatedText text="Vision" delay={firstLineDelay + 0.2} />
+              <AnimatedText text="Brands" delay={firstLineDelay + 0.2} />
               <motion.span
                 className="absolute translate-y-1 inline-block left-0 bottom-0 bg-[#ff66ff] h-2"
                 initial={{ width: 0, opacity: 0 }}
@@ -143,9 +143,9 @@ const HeroSection = () => {
             </span>
           </span>
           <span>
-            <AnimatedText text="Our " delay={secondLineDelay} />
+            <AnimatedText text="At " delay={secondLineDelay} />
             <span className="inline-block relative">
-              <AnimatedText text="Mission" delay={secondLineDelay + 0.2} />
+              <AnimatedText text="Stellar Speed" delay={secondLineDelay + 0.2} />
               <motion.span
                 className="absolute translate-y-1 inline-block left-0 bottom-0 bg-[#ff66ff] h-2"
                 initial={{ width: 0, opacity: 0 }}
@@ -174,11 +174,11 @@ const HeroSection = () => {
             damping: 12,
             mass: 0.1,
           }}
-          className="font-sg font-medium md:text-lg text-sm mt-8"
+          className="font-sg font-medium md:text-lg text-lg mt-8"
         >
-          We are the trusted partner for startups and businesses, offering{" "}
+          Stellix is a performance-driven digital growth partner{" "}
           <br className="md:inline-block hidden" />
-          innovative solutions that turn your ideas into impactful realities
+          for ambitious brands ready to scale globally.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -223,7 +223,7 @@ const HeroSection = () => {
             href="#contact"
             className="relative inline-block transition-all  duration-300 z-20 group-active:-translate-x-1 group-active:translate-y-1"
           >
-            Request a Demo
+            Book a Strategy Call
           </a>
         </motion.button>
       </div>

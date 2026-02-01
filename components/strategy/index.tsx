@@ -1,54 +1,92 @@
-
 import StrategyCard from "./strategy-card";
 
 const strategies = [
   {
     number: "1",
-    label: "BUILD",
-    title: "End-to-End Application Development",
+    label: "PAID GROWTH",
+    title: "Paid Social Growth",
     description:
-      "From concept to launch, we build high-quality full-stack applications tailored to your startup's needs.",
-    linkHref: "/application-development",
+      "We build, test, and scale paid social campaigns designed for aggressive, sustainable growth across all major platforms.",
+    details: [
+      "Full-funnel Meta & TikTok ad strategy",
+      "Scalable campaign structures",
+      "Creative testing systems",
+      "Budget scaling frameworks",
+      "Geo expansion playbooks",
+      "CPA & ROAS optimization"
+    ]
   },
   {
     number: "2",
-    label: "GROW",
-    title: "Marketing & Growth Strategy",
+    label: "CREATIVE",
+    title: "Performance Creative Systems",
     description:
-      "Leverage branding, SEO, and user acquisition strategies to expand your reach and maximize engagement.",
-    linkHref: "/marketing-strategy",
+      "In high-competition markets, creative is the targeting. We develop data-backed ad concepts designed to stop scrolls and drive action.",
+    details: [
+      "Creative strategy & angles",
+      "Ad scripting & hooks",
+      "Static + motion ad direction",
+      "UGC-style performance concepts",
+      "Rapid creative testing cycles",
+      "Performance-based creative iteration"
+    ]
   },
   {
     number: "3",
-    label: "CONNECT",
-    title: "Funding & Investor Network",
+    label: "CONVERSION",
+    title: "Conversion & Funnel Optimization",
     description:
-      "Gain access to venture capitalists and investors to secure the financial boost your startup needs.",
-    linkHref: "/funding-support",
+      "Scaling traffic means nothing if the funnel leaks. We optimize every step of the journey from click to signup to revenue.",
+    details: [
+      "Landing page performance audits",
+      "Conversion rate optimization (CRO)",
+      "Funnel drop-off analysis",
+      "Offer positioning tests",
+      "UX adjustments for higher conversions"
+    ]
   },
   {
     number: "4",
-    label: "PRODUCT DESIGN",
-    title: "User Experience & Interface Design",
+    label: "INTELLIGENCE",
+    title: "Tracking & Performance Intelligence",
     description:
-      "Create intuitive, engaging user experiences that enhance usability and increase conversion rates.",
-    linkHref: "/ux-ui-design",
+      "Growth decisions should be based on real data, not platform guesses. We build tracking infrastructure that tells the truth.",
+    details: [
+      "Pixel & event tracking setup",
+      "Conversion API alignment",
+      "Funnel tracking audits",
+      "Data validation & performance reporting",
+      "Insight-driven optimization loops"
+    ]
   },
   {
     number: "5",
-    label: "TECH INNOVATION",
-    title: "Scalable Software Architecture",
+    label: "EXPANSION",
+    title: "Global Market Scaling",
     description:
-      "Develop robust, scalable systems to support your startup's growth and evolving business needs.",
-    linkHref: "/software-architecture",
+      "We help brands move from single-market success to multi-geo performance growth with localized strategies that scale.",
+    details: [
+      "New market launch strategy",
+      "Localization of creatives",
+      "Geo-specific performance testing",
+      "Budget allocation across markets",
+      "Scaling winners internationally"
+    ]
   },
   {
     number: "6",
-    label: "SMART SOLUTIONS",
-    title: "Graphic Designing & Video Creation",
+    label: "SOCIAL",
+    title: "Social Media Management",
     description:
-      "Enhance decision-making and design compelling visuals and videos that captivate and inspire your target audience.",
-    linkHref: "/ai-ml-integration",
+      "Not vanity posting - strategic social presence that supports paid growth and builds brand authority across platforms.",
+    details: [
+      "Content strategy & monthly calendars",
+      "Brand voice development",
+      "Post design & captions",
+      "Reel & short-form video direction",
+      "Community engagement guidance",
+      "Organic + paid synergy planning"
+    ]
   },
 ];
 
@@ -77,17 +115,17 @@ const StrategySection = () => {
         <div className="w-fit">
           <div className="w-fit">
             <p className="uppercase font-gb text-[16px] font-semibold pb-[10px]">
-              Boldo Agency
+              Stellix Services
             </p>
 
-            <h2 className="md:text-[50px] w-fit font-gb text-nowrap text-[32px] mt-[24px] font-bold leading-tight">
-              Empowering startups &nbsp;
+            <h2 className="md:text-[50px] w-fit font-gb text-[32px] mt-[24px] font-bold leading-tight">
+              Performance-driven{" "}
               <br className="md:block hidden" />
-              to build, grow, &nbsp;
+              growth solutions{" "}
               <br className="md:block hidden" />
-              and connect with &nbsp;
+              engineered for{" "}
               <br className="md:block hidden" />
-              the right resources.&nbsp;
+              scale & speed.
             </h2>
           </div>
 
@@ -98,7 +136,7 @@ const StrategySection = () => {
               href="#contact"
               className="relative inline-block transition-all  duration-300 z-20 group-active:-translate-x-1 group-active:translate-y-1"
             >
-              Contact now
+              Get Started
             </a>
           </button>
         </div>
@@ -112,6 +150,7 @@ const StrategySection = () => {
                 number={strategy.number}
                 title={strategy.title}
                 description={strategy.description}
+                details={strategy.details}
               />
             ))}
           </div>

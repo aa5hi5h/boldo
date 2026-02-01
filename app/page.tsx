@@ -1,5 +1,4 @@
 import HeroSection from "../components/hero";
-import ProjectSection from "../components/projects";
 import StrategySection from "../components/strategy";
 import AboutSection from "../components/about";
 import ContactSection from "../components/contact";
@@ -9,6 +8,8 @@ import Navbar from "../components/ui/navbar";
 import FooterSection from "../components/footer";
 import WhyOurAgency from "../components/why-dma";
 import CTASection from "@/components/cta-section";
+import StellarMethodSection from "../components/projects";
+import BlogSection from "@/components/blog";
 
 export default function Home() {
   return (
@@ -18,8 +19,9 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <WhyOurAgency />
-      <ProjectSection />
+      <StellarMethodSection />
       <StrategySection />
+      <BlogSection />
       <AboutSection />
       <ContactSection />
       <FAQ />

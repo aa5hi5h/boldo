@@ -16,7 +16,7 @@ const NavLink = ({
         "font-mono group tracking-[-1%] relative text-nowrap",
         className,
       )}
-      href={`#${linkName.split(" ").join("").toLowerCase()}`}
+      href={`/#${linkName.split(" ").join("").toLowerCase()}`}
     >
       {index !== undefined && (
         <span className="absolute text-[9px] group-hover:opacity-100 ease-in-out transition-all opacity-70 translate-y-2 top-[-100%] right-0">

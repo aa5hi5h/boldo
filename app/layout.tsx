@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { dmMono, spaceGrotesk } from "../config/font";
+import AuthProvider from "@/components/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,9 @@ export default function RootLayout({
     <html lang="en" className={`${spaceGrotesk.variable} ${dmMono.variable}`}>
       <body className="font-sans antialiased dark bg-background">
         
-        {children}
+      <AuthProvider>
+          {children}
+        </AuthProvider>
         
       </body>
     </html>

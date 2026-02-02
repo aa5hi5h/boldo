@@ -11,7 +11,7 @@ const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const [openSideBar, setOpenSideBar] = useState(false);
-  const links = ["Our Projects", "Services", "News", "About Us"];
+  const links = ["Our Projects", "Services", "Blogs", "About Us"];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,7 +46,7 @@ const Navbar = () => {
                     index !== links.length - 1 && "border-b border-neutral-700",
                   )}
                 >
-                  <Link href={`#${link.split(" ").join("").toLowerCase()}`}>
+                  <Link href={`/#${link.split(" ").join("").toLowerCase()}`}>
                     {link}
                   </Link>
                 </li>
@@ -73,7 +73,7 @@ const Navbar = () => {
               fontWeight={900}
             />
 
-            <Link href="#">
+            <Link href="/">
               <Image
                 src="/assets/logos/keizer-logo-name.svg"
                 width={175}
@@ -103,7 +103,7 @@ const Navbar = () => {
             </ul>
 
             <Link
-              href="#contact"
+              href="/#contact"
               className="font-sans flex flex-center bg-white hover:bg-neutral-300 text-black w-[102px] h-[36px] font-[700] text-[16px] rounded-[4px]"
             >
               Let's talk

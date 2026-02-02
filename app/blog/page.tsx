@@ -1,253 +1,243 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import DotsBackground from "@/components/blog/DotsBackground";
 import Navbar from "@/components/ui/navbar";
 import FooterSection from "@/components/footer";
-import { gotham_font, spaceGrotesk } from "@/config/font";
 
-interface BlogPost {
+interface Post {
   id: string;
   title: string;
+  slug: string;
   excerpt: string;
   category: string;
+  createdAt: string;
   readTime: string;
-  date: string;
-  author: string;
-  image: string;
-  featured?: boolean;
+  image: string | null;
+  author: {
+    name: string | null;
+  };
 }
 
-const blogPosts: BlogPost[] = [
-  {
-    id: "1",
-    title: "How We Scaled a SaaS Brand from $0 to $500K MRR in 8 Months",
-    excerpt:
-      "A deep dive into the exact paid social strategy, creative testing framework, and funnel optimization tactics we used to achieve explosive growth.",
-    category: "Case Study",
-    readTime: "8 min read",
-    date: "Jan 28, 2026",
-    author: "Stellix Team",
-    image: "/assets/blog/blog-1.jpg",
-    featured: true,
-  },
-  {
-    id: "2",
-    title: "The STELLAR Framework: Engineering Growth Systems That Scale",
-    excerpt:
-      "Why most agencies chase tactics while we build systems. Learn the 7-step framework behind every successful Stellix campaign.",
-    category: "Strategy",
-    readTime: "12 min read",
-    date: "Jan 25, 2026",
-    author: "Stellix Team",
-    image: "/assets/blog/blog-2.jpg",
-    featured: true,
-  },
-  {
-    id: "3",
-    title: "Creative is the New Targeting: Meta Ads in 2026",
-    excerpt:
-      "Platform privacy changes killed traditional targeting. Here's how performance creative became the most important lever for scaling Meta ads.",
-    category: "Paid Social",
-    readTime: "6 min read",
-    date: "Jan 22, 2026",
-    author: "Stellix Team",
-    image: "/assets/blog/blog-3.jpg",
-  },
-  {
-    id: "4",
-    title: "From Single Market to Global: Scaling Across 12 Countries",
-    excerpt:
-      "The exact playbook we used to take a US-only brand international, including localization strategies and budget allocation frameworks.",
-    category: "Expansion",
-    readTime: "10 min read",
-    date: "Jan 20, 2026",
-    author: "Stellix Team",
-    image: "/assets/blog/blog-4.jpg",
-  },
-  {
-    id: "5",
-    title: "Conversion Rate Optimization: The 20% That Drives 80% of Results",
-    excerpt:
-      "Traffic is expensive. Here are the high-impact CRO tests that consistently lift conversion rates by 30-50% across our client portfolio.",
-    category: "Conversion",
-    readTime: "7 min read",
-    date: "Jan 18, 2026",
-    author: "Stellix Team",
-    image: "/assets/blog/blog-5.jpg",
-  },
-  {
-    id: "6",
-    title: "Why Your Tracking Setup is Lying to You (And How to Fix It)",
-    excerpt:
-      "Attribution is broken. Learn how to build a tracking infrastructure that actually tells you where your revenue is coming from.",
-    category: "Analytics",
-    readTime: "9 min read",
-    date: "Jan 15, 2026",
-    author: "Stellix Team",
-    image: "/assets/blog/blog-6.jpg",
-  },
-];
+export default function BlogPage() {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
 
-const BlogPage = () => {
-  const featuredPosts = blogPosts.filter((post) => post.featured);
-  const regularPosts = blogPosts.filter((post) => !post.featured);
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    try {
+      const response = await fetch("/api/posts");
+      const data = await response.json();
+      setPosts(data);
+    } catch (error) {
+      console.error("Failed to fetch posts:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const categories = [
+    "ALL", 
+    ...Array.from(new Set(posts.map(p => p.category || "Uncategorized").filter(Boolean)))
+  ];
+  
+  const filteredPosts = selectedCategory === "ALL" 
+    ? posts 
+    : posts.filter(p => (p.category || "Uncategorized") === selectedCategory);
+
+  const formatDate = (date: string) => {
+    return new Date(date).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric"
+    });
+  };
 
   return (
-    <main
-      className={`${gotham_font.variable} ${spaceGrotesk.variable} overflow-hidden bg-black text-white`}
-    >
+    <main className="bg-black text-white min-h-screen">
       <Navbar />
-
       {/* Hero Section */}
-      <section className="bg-black pt-[140px] pb-[80px] md:px-24 px-4">
-        <div className="max-w-[1536px] mx-auto">
-          <div className="relative">
-            <p className="uppercase font-gb text-[16px] font-semibold pb-[10px] text-white/80">
-              Stellix Insights
+      <section className="relative overflow-hidden border-b-2 border-white">
+        <div className="max-w-[1536px] mx-auto relative md:p-[100px] px-[24px] py-[80px]">
+          <div className="max-w-[800px]">
+            <p className="uppercase text-[16px] pb-[10px] font-semibold font-gb text-gray-400">
+              Stellix Blog
             </p>
-            <h1 className="relative md:text-7xl text-5xl mt-4 font-gb font-bold">
-              <span className="z-30 relative">Growth Playbooks</span>
-              <div className="inset-0 absolute bg-white z-20" />
-              <div className="inset-0 absolute bg-[#1e96fc] translate-x-2 translate-y-2 z-10" />
+            <h1 className="md:text-[64px] text-[40px] font-gb font-bold leading-[1.1] mb-6 text-white">
+              Growth strategies <br />
+              that actually work
             </h1>
-            <p className="mt-6 text-lg md:text-xl text-white/80 font-sg max-w-2xl">
-              Deep dives, case studies, and frameworks from the frontlines of
-              performance marketing.
+            <p className="md:text-[20px] text-[16px] font-sg text-gray-300">
+              Deep dives into performance marketing, scaling frameworks, and the strategies behind our best client results.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Dot Pattern Background */}
-      <div
-        className="fixed inset-0 opacity-5 pointer-events-none"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-          backgroundSize: "40px 40px",
-        }}
-      />
-
-      {/* Featured Posts */}
-      <section className="bg-[#161619] relative py-[80px] md:px-24 px-4">
-        <div className="max-w-[1536px] mx-auto">
-          <h2 className="text-3xl md:text-4xl font-gb font-bold mb-12">
-            Featured Articles
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {featuredPosts.map((post) => (
-              <a
-                key={post.id}
-                href={`/blog/${post.id}`}
-                className="group relative bg-white/5 border-2 border-white/10 hover:border-[#1e96fc] transition-all duration-300 overflow-hidden"
+      {/* Category Filter */}
+      <section className="border-b-2 border-white bg-black sticky top-0 z-40">
+        <div className="max-w-[1536px] mx-auto md:px-[100px] px-[24px] py-6">
+          <div className="flex gap-3 overflow-x-auto">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-2 font-gb font-bold text-sm whitespace-nowrap transition-all ${
+                  selectedCategory === category
+                    ? "bg-white text-black"
+                    : "bg-gray-800 text-white hover:bg-gray-700"
+                }`}
               >
-                <div className="aspect-video bg-gradient-to-br from-[#2D2DC3] to-[#1e96fc] relative overflow-hidden">
-                  {/* Placeholder for image */}
-                  <div className="absolute inset-0 flex items-center justify-center text-white/20 font-gb text-2xl">
-                    Featured
-                  </div>
-                </div>
-                <div className="p-8">
-                  <div className="flex items-center gap-4 text-sm text-white/60 mb-4">
-                    <span className="px-3 py-1 bg-[#1e96fc]/20 text-[#1e96fc] font-medium">
-                      {post.category}
-                    </span>
-                    <span>{post.readTime}</span>
-                    <span>{post.date}</span>
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-gb font-bold mb-4 group-hover:text-[#1e96fc] transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-white/70 font-sg leading-relaxed">
-                    {post.excerpt}
-                  </p>
-                  <div className="mt-6 flex items-center gap-2 text-[#1e96fc] font-medium">
-                    <span>Read article</span>
-                    <svg
-                      className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </a>
+                {category}
+              </button>
             ))}
           </div>
         </div>
       </section>
 
-      {/* All Posts Grid */}
-      <section className="bg-black relative py-[80px] md:px-24 px-4">
-        <div className="max-w-[1536px] mx-auto">
-          <h2 className="text-3xl md:text-4xl font-gb font-bold mb-12">
-            Latest Insights
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {regularPosts.map((post) => (
-              <a
-                key={post.id}
-                href={`/blog/${post.id}`}
-                className="group relative bg-white/5 border-2 border-white/10 hover:border-white/30 transition-all duration-300 hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,0.1)]"
-              >
-                <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 relative overflow-hidden">
-                  {/* Placeholder for image */}
-                  <div className="absolute inset-0 flex items-center justify-center text-white/10 font-gb text-xl">
-                    {post.category}
-                  </div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-3 text-xs text-white/60 mb-3">
-                    <span className="px-2 py-1 bg-white/10 text-white/80 font-medium">
-                      {post.category}
-                    </span>
-                    <span>{post.readTime}</span>
-                  </div>
-                  <h3 className="text-xl font-gb font-bold mb-3 group-hover:text-white transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-white/60 font-sg text-sm leading-relaxed line-clamp-3">
-                    {post.excerpt}
-                  </p>
-                  <div className="mt-4 text-sm text-white/50">
-                    {post.date}
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
+      {/* Blog Grid */}
+      <section className="relative">
+        <DotsBackground 
+          className="absolute inset-0" 
+          dotSize={4} 
+          gap={40} 
+          dotColor="rgba(255, 255, 255, 0.05)" 
+        />
+
+        <div className="max-w-[1536px] mx-auto relative md:p-[100px] px-[24px] py-[60px]">
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="h-[500px] bg-gray-800 animate-pulse border-2 border-white" />
+              ))}
+            </div>
+          ) : filteredPosts.length === 0 ? (
+            <div className="text-center py-20">
+              <p className="text-2xl font-gb font-bold text-gray-400">
+                No posts found in this category.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
+              {filteredPosts.map((post) => (
+                <BlogCard key={post.id} post={post} formatDate={formatDate} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="bg-[#2D2DC3] relative py-[80px] md:px-24 px-4">
-        <div className="max-w-[1536px] mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-gb font-bold mb-6">
-            Ready to Build Your Growth Engine?
-          </h2>
-          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Let's turn these strategies into results for your brand.
-          </p>
-          <button className="font-sg translate-x-1 font-medium group relative text-white px-6 md:text-lg py-3">
-            <div className="absolute -bottom-1 -left-1 w-full h-full bg-white z-0"></div>
-            <div className="absolute group-active:translate-y-1 group-active:-translate-x-1 transition-all inset-0 bg-black z-10"></div>
-            <a
-              href="#contact"
-              className="relative inline-block transition-all duration-300 z-20 group-active:-translate-x-1 group-active:translate-y-1"
-            >
-              Book a Strategy Call
-            </a>
-          </button>
-        </div>
-      </section>
-
       <FooterSection />
     </main>
   );
-};
+}
 
-export default BlogPage;
+interface BlogCardProps {
+  post: Post;
+  formatDate: (date: string) => string;
+}
+
+const BlogCard = ({ post, formatDate }: BlogCardProps) => {
+  const [imageError, setImageError] = useState(false);
+
+  return (
+    <Link href={`/blog/${post.slug}`}>
+      <article className="group relative bg-black border-2 border-white overflow-hidden transition-all duration-500 hover:shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1 flex flex-col h-full cursor-pointer">
+        {/* Image */}
+        <div className="relative h-[280px] overflow-hidden bg-gray-900">
+          {post.image && !imageError ? (
+            <>
+              <img
+                src={post.image}
+                alt={post.title}
+                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
+                onError={() => setImageError(true)}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </>
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-[#2D2DC3] via-[#1e96fc] to-[#0ea5e9] flex items-center justify-center">
+              <span className="text-white font-gb text-5xl font-bold drop-shadow-lg">
+                {post.category?.charAt(0) || "U"}
+              </span>
+            </div>
+          )}
+
+          {/* Category Badge */}
+          <div className="absolute top-5 left-5 bg-white text-black px-4 py-2 text-xs font-bold font-gb uppercase tracking-wider transform transition-all duration-300 group-hover:bg-[#2D2DC3] group-hover:text-white group-hover:scale-105">
+            {post.category}
+          </div>
+
+          <div className="absolute top-0 right-0 w-16 h-16 bg-[#1e96fc]/20 transform rotate-45 translate-x-8 -translate-y-8 group-hover:translate-x-6 group-hover:-translate-y-6 transition-all duration-500" />
+        </div>
+
+        {/* Content */}
+        <div className="p-[28px] flex flex-col flex-grow bg-black relative">
+          <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-[#2D2DC3] to-[#1e96fc] group-hover:w-full transition-all duration-500" />
+
+          {/* Meta */}
+          <div className="flex items-center gap-3 text-xs text-gray-400 mb-4 font-sg font-medium">
+            <div className="flex items-center gap-1.5">
+              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+              </svg>
+              <span>{formatDate(post.createdAt)}</span>
+            </div>
+            <span className="text-gray-600">•</span>
+            <div className="flex items-center gap-1.5">
+              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+              </svg>
+              <span>{post.readTime}</span>
+            </div>
+          </div>
+
+          {/* Title */}
+          <h3 className="text-xl md:text-2xl font-bold font-gb mb-4 leading-[1.2] text-white group-hover:text-[#1e96fc] transition-colors duration-300 line-clamp-3">
+            {post.title}
+          </h3>
+
+          {/* Excerpt */}
+          <p className="text-[15px] md:text-base font-sg text-gray-300 leading-relaxed mb-6 flex-grow line-clamp-3">
+            {post.excerpt}
+          </p>
+
+          {/* Read More */}
+          <div className="inline-flex items-center gap-2 text-sm font-bold font-gb text-white group-hover:text-[#1e96fc] transition-all duration-300 mt-auto pt-4 border-t border-gray-800">
+            <span className="relative">
+              Read Full Article
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#1e96fc] group-hover:w-full transition-all duration-300" />
+            </span>
+            <svg
+              className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </div>
+        </div>
+
+        {/* Corner Accent */}
+        <div className="absolute bottom-0 right-0 w-0 h-0 border-l-[40px] border-l-transparent border-b-[40px] border-b-[#2D2DC3] opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:border-l-[50px] group-hover:border-b-[50px]">
+          <div className="absolute bottom-[-35px] right-[-5px] w-6 h-6 bg-black rounded-full" />
+        </div>
+
+        {/* Glow Effect */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#2D2DC3]/10 via-transparent to-[#1e96fc]/10" />
+        </div>
+      </article>
+    </Link>
+  );
+};

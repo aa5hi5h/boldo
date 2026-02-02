@@ -24,3 +24,62 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Blog Content Styles */
+.prose h2 { color: #000; font-weight: bold; margin-top: 2em; }
+.prose h3 { color: #000; font-weight: bold; margin-top: 1.5em; }
+.prose strong { color: #000; font-weight: bold; }
+.prose a { color: #2D2DC3; font-weight: bold; }
+.prose code { background: #f3f4f6; padding: 0.25rem 0.5rem; border-radius: 0.25rem; }
+.prose pre { background: #1f2937; color: white; padding: 1.5rem; border-radius: 0.5rem; }
+
+/* Tiptap Editor Styles */
+.ProseMirror {
+  min-height: 400px;
+  padding: 24px;
+  border: 2px solid #000;
+  outline: none;
+}
+
+.ProseMirror:focus {
+  border-color: #2D2DC3;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 1em;
+}
+
+.ProseMirror h3 {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin-top: 0.75em;
+}
+
+.ProseMirror strong {
+  font-weight: bold;
+}
+
+.ProseMirror code {
+  background: #f3f4f6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.ProseMirror pre {
+  background: #1f2937;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.ProseMirror ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+}
+
+.ProseMirror ol {
+  list-style: decimal;
+  margin-left: 1.5rem;
+}

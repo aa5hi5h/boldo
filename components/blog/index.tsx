@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DotsBackground from "../blog/DotsBackground";
 
 interface BlogPost {
@@ -12,7 +12,25 @@ interface BlogPost {
   image: string;
 }
 
+interface Post {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  category: string;
+  createdAt: string;
+  readTime: string;
+  image: string | null;
+  author: {
+    name: string | null;
+  };
+}
+
 const BlogSection = () => {
+
+  const [loading,setLoading] = useState<boolean>(true)
+
+
   const blogPosts: BlogPost[] = [
     {
       title: "Why Creative Velocity Beats Creative Quality in Performance Marketing",
@@ -43,8 +61,10 @@ const BlogSection = () => {
     },
   ];
 
+
+
   return (
-    <section className="bg-white text-black relative overflow-hidden">
+    <section id="blogs" className="bg-white text-black relative overflow-hidden">
       {/* Background Pattern - Using DotsBackground Component */}
       <DotsBackground 
         className="absolute inset-0" 

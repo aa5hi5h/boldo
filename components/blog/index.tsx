@@ -48,7 +48,7 @@ const BlogSection = () => {
   };
 
   return (
-    <section id="news" className="bg-white text-black relative overflow-hidden">
+    <section id="blogs" className="bg-white text-black relative overflow-hidden">
       {/* Background Pattern - Using DotsBackground Component */}
       <DotsBackground 
         className="absolute inset-0" 

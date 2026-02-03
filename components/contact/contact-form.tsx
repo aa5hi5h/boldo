@@ -131,10 +131,10 @@ const ContactForm: React.FC = () => {
           type="text"
           placeholder="Enter your name"
           disabled={sendingEmail}
-          className="w-full md:py-[30px] py-[20px] placeholder:text-white/50 bg-transparent border-b border-white text-white placeholder-white focus:outline-none"
+          className="w-full md:py-[30px] py-[20px] placeholder:text-white/70 font-medium bg-transparent border-b border-white text-white focus:outline-none"
         />
         {errors.name && (
-          <p className="text-white text-sm flex items-center gap-3 pt-2  mt-1">
+          <p className="text-white font-semibold text-sm flex items-center gap-3 pt-2  mt-1">
             <span className="h-[10px] aspect-square rounded-full bg-red-500 w-[10px] inline-block"></span>
             {errors.name}
           </p>
@@ -148,10 +148,10 @@ const ContactForm: React.FC = () => {
           type="email"
           placeholder="Enter your email"
           disabled={sendingEmail}
-          className="w-full md:py-[30px] py-[20px] bg-transparent border-b placeholder:text-white/50 border-white text-white placeholder-white focus:outline-none"
+          className="w-full md:py-[30px] py-[20px] bg-transparent border-b placeholder:text-white/70 font-medium border-white text-white focus:outline-none"
         />
         {errors.email && (
-          <p className="text-white text-sm  flex items-center gap-3 pt-2 mt-1">
+          <p className="text-white font-semibold text-sm  flex items-center gap-3 pt-2 mt-1">
             <span className="h-[10px] aspect-square rounded-full bg-red-500 w-[10px] inline-block"></span>
             {errors.email}
           </p>
@@ -165,10 +165,10 @@ const ContactForm: React.FC = () => {
           type="tel"
           placeholder="Enter your contact number"
           disabled={sendingEmail}
-          className="w-full md:py-[30px] py-[20px] bg-transparent border-b placeholder:text-white/50 border-white text-white placeholder-white focus:outline-none"
+          className="w-full md:py-[30px] py-[20px] bg-transparent border-b placeholder:text-white/70 font-medium border-white text-white focus:outline-none"
         />
         {errors.phone && (
-          <p className="text-white text-sm  flex items-center gap-3 pt-2 mt-1">
+          <p className="text-white font-semibold text-sm  flex items-center gap-3 pt-2 mt-1">
             <span className="h-[10px] aspect-square rounded-full bg-red-500 w-[10px] inline-block"></span>
             {errors.phone}
           </p>
@@ -182,10 +182,10 @@ const ContactForm: React.FC = () => {
           type="text"
           placeholder="Enter your company name"
           disabled={sendingEmail}
-          className="w-full md:py-[30px] py-[20px] bg-transparent border-b placeholder:text-white/50 border-white text-white placeholder-white focus:outline-none"
+          className="w-full md:py-[30px] py-[20px] bg-transparent border-b placeholder:text-white/70 font-medium border-white text-white focus:outline-none"
         />
         {errors.company && (
-          <p className="text-white text-sm  flex items-center gap-3 pt-2 mt-1">
+          <p className="text-white font-semibold text-sm  flex items-center gap-3 pt-2 mt-1">
             <span className="h-[10px] aspect-square rounded-full bg-red-500 w-[10px] inline-block"></span>
             {errors.company}
           </p>
@@ -199,10 +199,10 @@ const ContactForm: React.FC = () => {
           placeholder="Enter your project name"
           rows={1}
           disabled={sendingEmail}
-          className="w-full md:py-[30px] py-[20px] pr-[20px] bg-transparent border-b placeholder:text-white/50 border-white text-white placeholder-white focus:outline-none"
+          className="w-full md:py-[30px] py-[20px] pr-[20px] bg-transparent border-b placeholder:text-white/70 font-medium border-white text-white focus:outline-none"
         />
         {errors.project && (
-          <p className="text-white text-sm flex items-center gap-3 pt-2  mt-1">
+          <p className="text-white font-semibold text-sm flex items-center gap-3 pt-2  mt-1">
             <span className="h-[10px] aspect-square rounded-full bg-red-500 w-[10px] inline-block"></span>
             {errors.project}
           </p>

@@ -19,14 +19,14 @@ const AboutSection = () => {
 
           <img
             className="absolute xl:block aspect-square object-cover w-[650px] z-10 hidden top-0 right-0"
-            src="/assets/decoration/keizer-grid.svg"
+            src="/assets/decoration/stellix-blue-bg.svg"
             alt="Stellix-grid"
           />
         </header>
 
         <img
           className="w-full mt-[70px]  xl:hidden block"
-          src="/assets/decoration/keizer-grid.svg"
+          src="/assets/decoration/stellix-blue-bg.svg"
           alt="Stellix-grid"
         />
 

@@ -73,14 +73,14 @@ const Navbar = () => {
               fontWeight={900}
             />
 
-            <Link href="/">
+            <Link href="/" className="flex-shrink-0">
               <Image
                 src="/assets/stellix_dark_white-Picsart-BackgroundRemover.png"
-                width={175}
-                height={79.82}
+                width={180}
+                height={180}
                 alt="Boldo-brand-logo"
                 className={cn(
-                  "md:w-[175px] md:h-[79.82px] sm:w-[135px] sm:h-[58.856px] w-[80.4px] h-[49.83px] transition-all",
+                  "h-20 md:h-28 w-auto -my-4 transition-all",
                   visible ? "scale-100" : "md:scale-[0.9] scale-100",
                 )}
               />
@@ -104,7 +104,7 @@ const Navbar = () => {
 
             <Link
               href="/#contact"
-              className="font-sans flex flex-center bg-white hover:bg-neutral-300 text-black w-[102px] h-[36px] font-[700] text-[16px] rounded-[4px]"
+              className="font-sans flex items-center justify-center bg-white hover:bg-neutral-300 text-black w-[102px] h-[36px] font-[700] text-[16px] rounded-[4px]"
             >
               Let's talk
             </Link>

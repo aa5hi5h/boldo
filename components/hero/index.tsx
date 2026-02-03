@@ -263,7 +263,7 @@ const HeroSection = () => {
             damping: 12,
             mass: 0.1,
           }}
-          src={"/assets/logos/keizer-bg-blue.svg"}
+          src={"/assets/decoration/stellix-blue-bg.svg"}
           className="z-30 absolute inset-0 object-cover"
           alt="agency-logo"
         />

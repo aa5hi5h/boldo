@@ -75,7 +75,7 @@ const Navbar = () => {
 
             <Link href="/">
               <Image
-                src="/assets/logos/keizer-logo-name.svg"
+                src="/assets/stellix_dark_white-Picsart-BackgroundRemover.png"
                 width={175}
                 height={79.82}
                 alt="Boldo-brand-logo"

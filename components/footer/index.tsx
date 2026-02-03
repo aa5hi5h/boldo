@@ -28,10 +28,10 @@ const FooterSection = () => {
         <div className="flex flex-col lg:flex-row lg:justify-between space-y-8 lg:space-y-0">
           <div>
             <Image
-              src="/assets/logos/keizer-logo-name.svg"
+              src="/assets/stellix_dark_white-Picsart-BackgroundRemover.png"
               width={175}
               height={79.82}
-              alt="boldo-brand-logo"
+              alt="stellix-logo"
               className="md:translate-x-0 translate-x-[-15px]"
             />
             <p className="max-w-[350px] text-neutral-400 mt-4">
@@ -81,7 +81,7 @@ const FooterSection = () => {
       <div className="flex items-center justify-center text-black bg-white text-center">
         <div className="flex flex-wrap items-center justify-center sm:justify-between gap-4 w-full max-w-[1536px] mx-auto md:px-[100px] px-[24px] py-2">
         <span className="font-semibold">
-          © {new Date().getFullYear()} Boldo. All rights reserved.
+          © {new Date().getFullYear()} Stellix. All rights reserved.
         </span>
         <ul className="flex gap-6 text-sm font-medium">
           {policyLinks.map((link) => (

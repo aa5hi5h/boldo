@@ -361,7 +361,7 @@ const FloatingLabel: React.FC<FloatingLabelProps> = ({
       >
         <span>
           <span className="inline-block relative h-full w-full">
-            Agency
+            Stellix
             <span className="absolute -top-6 -left-10">
               <CursorIcon />
             </span>

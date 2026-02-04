@@ -26,7 +26,7 @@ const AboutSection = () => {
 
         <img
           className="w-full mt-[70px]  xl:hidden block"
-          src="/assets/decoration/stellix-blue-bg.svg"
+          src="/assets/decoration/stellix-growth.svg"
           alt="Stellix-grid"
         />
 

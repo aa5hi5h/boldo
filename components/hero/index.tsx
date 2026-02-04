@@ -242,11 +242,6 @@ const HeroSection = () => {
         }}
         className="absolute bottom-20 -right-10 pointer-events-none"
       >
-        <img
-          src="/assets/decoration/decoration-text.svg"
-          alt=""
-          className="h-full w-full"
-        />
       </motion.div>
       <div className="relative md:ml-0 md:mx-0 mx-auto mt-[50px] flex-shrink-0 md:w-[412px] w-[380px] aspect-square">
         <motion.img

@@ -3,23 +3,20 @@ import Link from "next/link";
 
 const FooterSection = () => {
   const navigationLinks = [
-    { label: "Boldo", href: "#" },
-    { label: "Project", href: "#ourprojects" },
-    { label: "Strategy", href: "#services" },
+    { label: "Services", href: "#services" },
     { label: "About Us", href: "#aboutus" },
-    { label: "News", href: "#news" },
+    { label: "Blog", href: "#blogs" },
     { label: "Contact", href: "#contact" },
   ];
 
   const socialLinks = [
-    { label: "Instagram", href: "#" },
-    { label: "Twitter", href: "#" },
+    { label: "Instagram", href: "https://www.instagram.com/stellix.io?igsh=ZjA1dmE3aHVoaXJw" },
+    { label: "Facebook", href: "https://www.facebook.com/share/1BxzgUqbaF" },
   ];
 
   const policyLinks = [
-    { label: "Terms Of Service", href: "#" },
-    { label: "Privacy Policy", href: "#" },
-    { label: "Cookies", href: "#" },
+    { label: "Terms Of Service", href: "/terms" },
+    { label: "Privacy Policy", href: "/privacy" },
   ]
 
   return (

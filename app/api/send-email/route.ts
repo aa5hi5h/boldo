@@ -18,7 +18,7 @@ export async function POST(request: Request) {
 
     // Send email
     const { data, error } = await resend.emails.send({
-      from: 'Stellix Contact Form <onboarding@resend.dev>', // Change this after domain verification
+      from: 'Stellix Contact Form <info@stellix.io>', // Change this after domain verification
       to: 'info@stellix.io',
       replyTo: email,
       subject: `New Contact Form Submission from ${name}`,

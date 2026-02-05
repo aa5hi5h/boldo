@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/assets/decoration/stellix_dark_white.png',
+        url: '/assets/stellix_dark_white.png',
         type: 'image/png',
       }
     ]

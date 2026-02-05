@@ -402,9 +402,9 @@ const FloatingLabelNormal = () => {
         className="text-sm inline-block px-4 py-0.5 bg-[#ff66ff] text-[#383A48] border-2 border-[#383A48]"
       >
         <span>
-          <span className="inline-block relative h-full w-full">
+          <span className="md:inline-block hidden relative h-full w-full">
             Stellix
-            <span className="absolute -top-6 -left-10">
+            <span className="absolute -top-6 -left-10 md:inline-block hidden">
               <CursorIcon />
             </span>
           </span>

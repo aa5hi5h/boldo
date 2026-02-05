@@ -18,8 +18,13 @@ export const metadata: Metadata = {
   title: "Stellix",
   description: "Scaling brands at stellar speed",
   icons: {
-    icon: '/assets/decoration/stellix_dark_white.png'
-  },
+    icon: [
+      {
+        url: '/assets/decoration/stellix_dark_white.png',
+        type: 'image/png',
+      }
+    ]
+  }
 };
 
 export default function RootLayout({
